@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Recipe Blog</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #ff7043;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        .recipe {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .recipe img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        h2 {
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .rating span {
+            font-size: 24px;
+            cursor: pointer;
+            color: gray;
+        }
+
+        .rating span.active {
+            color: gold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            background: #ff7043;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>🍽 Simple Recipe Blog</header>
+
+<div class="container">
+
+    <!-- Recipe 1 -->
+    <div class="recipe">
+        <img src="https://images.unsplash.com/photo-1587653915936-21dcbf7a0d63?auto=format&fit=crop&w=900&q=60" alt="Pasta">
+        <h2>Tomato Pasta</h2>
+        <p><strong>Ingredients:</strong> Pasta, Tomato Sauce, Garlic, Salt</p>
+        <p><strong>Steps:</strong> Boil pasta → Cook sauce → Mix → Serve.</p>
+
+        <div class="rating" data-id="1">
+            ⭐ Rate:
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+    </div>
+
+    <!-- Recipe 2 -->
+    <div class="recipe">
+        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=60" alt="Pancakes">
+        <h2>Fluffy Pancakes</h2>
+        <p><strong>Ingredients:</strong> Flour, Eggs, Milk, Sugar</p>
+        <p><strong>Steps:</strong> Mix ingredients → Fry on pan → Serve with syrup.</p>
+
+        <div class="rating" data-id="2">
+            ⭐ Rate:
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+    </div>
+
+    <!-- Recipe 3 -->
+    <div class="recipe">
+        <img src="https://images.unsplash.com/photo-1604908177077-f4be1e3c1160?auto=format&fit=crop&w=900&q=60" alt="Salad">
+        <h2>Fresh Veggie Salad</h2>
+        <p><strong>Ingredients:</strong> Lettuce, Tomato, Cucumber, Lemon</p>
+        <p><strong>Steps:</strong> Chop veggies → Add dressing → Toss and serve.</p>
+
+        <div class="rating" data-id="3">
+            ⭐ Rate:
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+    </div>
+
+</div>
+
+<footer>© 2025 Simple Recipe Blog</footer>
+
+<script>
+    // Basic Rating System
+    document.querySelectorAll('.rating').forEach(ratingBox => {
+        const stars = ratingBox.querySelectorAll('span');
+
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                stars.forEach(s => s.classList.remove('active'));
+                for (let i = 0; i <= index; i++) {
+                    stars[i].classList.add('active');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
