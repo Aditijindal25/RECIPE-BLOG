@@ -2,114 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Recipe Blog</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-    }
-
-    header {
-      background: #ff6f00;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .search {
-      text-align: center;
-      margin: 20px;
-    }
-
-    .search input {
-      width: 60%;
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    .recipes {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .card-content {
-      padding: 15px;
-    }
-
-    .stars {
-      color: gold;
-      font-size: 18px;
-    }
-
-    .add-recipe {
-      background: white;
-      margin: 20px;
-      padding: 20px;
-      border-radius: 8px;
-    }
-
-    .add-recipe input,
-    .add-recipe textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-    }
-
-    button {
-      background: #ff6f00;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      cursor: pointer;
-    }
-
-    footer {
-      background: #333;
-      color: white;
-      text-align: center;
-      padding: 15px;
-    }
-  </style>
+  <title>Recipe Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>🍽️ Simple Recipe Blog</h1>
-  <p>Basic HTML • CSS • JS Project</p>
-</header>
+<!-- NAVBAR -->
+<nav>
+  <h2>🍴 RecipeHub</h2>
+  <ul>
+    <li>Home</li>
+    <li>Recipes</li>
+    <li>Add Recipe</li>
+  </ul>
+</nav>
 
-<div class="search">
+<!-- HERO -->
+<section class="hero">
+  <h1>Cook Something Amazing Today</h1>
+  <p>Explore • Rate • Share Recipes</p>
+</section>
+
+<!-- SEARCH + FILTER -->
+<section class="controls">
   <input type="text" id="search" placeholder="Search recipes..." onkeyup="searchRecipe()">
-</div>
+  <select id="categoryFilter" onchange="filterCategory()">
+    <option value="all">All</option>
+    <option value="veg">Veg</option>
+    <option value="nonveg">Non-Veg</option>
+    <option value="dessert">Dessert</option>
+  </select>
+</section>
 
-<div class="recipes" id="recipeList">
+<!-- RECIPES -->
+<section class="recipes" id="recipeList">
 
-  <div class="card">
-    <img src="https://picsum.photos/400/300?random=1">
+  <div class="card" data-category="veg">
+    <img src="https://picsum.photos/600/400?random=21">
     <div class="card-content">
-      <h3>Pasta</h3>
-      <p>Creamy homemade pasta.</p>
-      <div class="stars">★★★★☆</div>
+      <h3>Veg Pasta</h3>
+      <p>Creamy Italian pasta.</p>
+      <div class="stars" onclick="rate(this)">★★★★★</div>
     </div>
   </div>
 
-  <div class="card">
-    <img src="https://picsum.photos/400/300?random=2">
-    <div class="card-co
+  <div class="card" data-category="nonveg">
+    <img src="https://picsum.photos/600/400?random=22">
+    <div class="card-content">
+      <h3>Grilled Chicken</h3>
+      <p>Juicy & spicy chicken.</p>
+      <div class="stars" onclick="rate(this)">★★★★☆</div>
+    </div>
+  </div>
+
+  <div class="card" data-category="dessert">
+    <img src="https://picsum.photos/600/400?random=23">
+    <div class="card-content">
+      <h3>Chocolate Cake</h3>
+      <p>Soft & rich dessert.</p>
+      <div class="stars" onclick="rate(this)">★★★★★</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ADD RECIPE -->
+<section class="add-recipe">
+  <h2>Add New Recipe</h2>
+  <input type="text" id="name" placeholder="Recipe Name">
+  <textarea id="desc" placeholder="Description"></textarea>
+  <select id="category">
+    <option value="veg">Veg</option>
+    <option value="nonveg">Non-Veg</option>
+    <option value="dessert">Dessert</option>
+  </select>
+  <button onclick="addRecipe()">Add Recipe</button>
+</section>
+
+<footer>
+  <p>© 2026 RecipeHub | Advanced Frontend Project</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
 
