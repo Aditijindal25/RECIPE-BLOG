@@ -1,26 +1,3 @@
-function searchRecipe() {
-  let input = document.getElementById("search").value.toLowerCase();
-  let cards = document.querySelectorAll(".card");
-
-  cards.forEach(card => {
-    let title = card.querySelector("h3").innerText.toLowerCase();
-    card.style.display = title.includes(input) ? "block" : "none";
-  });
-}
-
-function filterCategory() {
-  let category = document.getElementById("categoryFilter").value;
-  let cards = document.querySelectorAll(".card");
-
-  cards.forEach(card => {
-    if (category === "all" || card.dataset.category === category) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
-}
-
 function addRecipe() {
   let name = document.getElementById("name").value;
   let desc = document.getElementById("desc").value;
@@ -31,12 +8,22 @@ function addRecipe() {
     return;
   }
 
+  let imageURL = "";
+
+  if (category === "veg") {
+    imageURL = "https://source.unsplash.com/600x400/?vegetarian,food";
+  } else if (category === "nonveg") {
+    imageURL = "https://source.unsplash.com/600x400/?chicken,food";
+  } else if (category === "dessert") {
+    imageURL = "https://source.unsplash.com/600x400/?dessert,cake";
+  }
+
   let card = document.createElement("div");
   card.className = "card";
   card.dataset.category = category;
 
   card.innerHTML = `
-    <img src="https://picsum.photos/600/400?random=${Math.random()*1000}">
+    <img src="${imageURL}">
     <div class="card-content">
       <h3>${name}</h3>
       <p>${desc}</p>
@@ -50,9 +37,4 @@ function addRecipe() {
   document.getElementById("desc").value = "";
 }
 
-function rate(starDiv) {
-  let rating = prompt("Rate from 1 to 5");
-  if (rating >= 1 && rating <= 5) {
-    starDiv.innerText = "★★★★★".slice(0, rating) + "☆☆☆☆☆".slice(0, 5 - rating);
-  }
-}
+
