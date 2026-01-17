@@ -1,133 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Recipe Blog</title>
+  <meta charset="UTF-8">
+  <title>Simple Recipe Blog</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #fafafa;
-            margin: 0;
-            padding: 0;
-        }
+    header {
+      background: #ff7043;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-        header {
-            background: #ff7043;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 26px;
-            font-weight: bold;
-        }
+    .search-box {
+      text-align: center;
+      margin: 20px;
+    }
 
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px 0;
-        }
+    .search-box input {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+    }
 
-        .recipe {
-            background: white;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
 
-        .recipe img {
-            width: 100%;
-            border-radius: 8px;
-        }
+    .recipe-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-        h2 {
-            margin-top: 10px;
-            color: #333;
-        }
+    .recipe-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
 
-        .rating span {
-            font-size: 24px;
-            cursor: pointer;
-            color: gray;
-        }
+    .recipe-content {
+      padding: 15px;
+    }
 
-        .rating span.active {
-            color: gold;
-        }
+    .recipe-content h3 {
+      margin: 0 0 10px;
+    }
 
-        footer {
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-            background: #ff7043;
-            color: white;
-        }
-    </style>
+    .stars {
+      color: gold;
+      font-size: 18px;
+    }
+
+    .form-section {
+      background: white;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .form-section h2 {
+      margin-top: 0;
+    }
+
+    .form-section input,
+    .form-section textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+    }
+
+    .form-section button {
+      background: #ff7043;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<header>🍽 Simple Recipe Blog</header>
+<header>
+  <h1>🍽️ My Recipe Blog</h1>
+  <p>Simple & Homemade Recipes</p>
+</header>
 
-<div class="container">
+<div class="search-box">
+  <input type="text" id="search" placeholder="Search recipes..." onkeyup="searchRecipes()">
+</div>
 
-    <!-- Recipe 1 -->
-    <div class="recipe">
-        <img src="https://images.unsplash.com/photo-1587653915936-21dcbf7a0d63?auto=format&fit=crop&w=900&q=60" alt="Pasta">
-        <h2>Tomato Pasta</h2>
-        <p><strong>Ingredients:</strong> Pasta, Tomato Sauce, Garlic, Salt</p>
-        <p><strong>Steps:</strong> Boil pasta → Cook sauce → Mix → Serve.</p>
+<div class="container" id="recipeList">
 
-        <div class="rating" data-id="1">
-            ⭐ Rate:
-            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
+  <div class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1604909053198-8bcbf5f2cdb5" alt="Pasta">
+    <div class="recipe-content">
+      <h3>Italian Pasta</h3>
+      <p>Creamy homemade pasta.</p>
+      <div class="stars">★★★★☆</div>
     </div>
+  </div>
 
-    <!-- Recipe 2 -->
-    <div class="recipe">
-        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=60" alt="Pancakes">
-        <h2>BREAD TOAST</h2>
-        <p><strong>Ingredients:</strong> Flour, Eggs, Milk, Sugar</p>
-        <p><strong>Steps:</strong> Mix ingredients → Fry on pan → Serve with syrup.</p>
-
-        <div class="rating" data-id="2">
-            ⭐ Rate:
-            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
+  <div class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe" alt="Salad">
+    <div class="recipe-content">
+      <h3>Healthy Salad</h3>
+      <p>Fresh veggies & greens.</p>
+      <div class="stars">★★★★★</div>
     </div>
+  </div>
 
-    <!-- Recipe 3 -->
-    <div class="recipe">
-        <img src="https://images.unsplash.com/photo-1604908177077-f4be1e3c1160?auto=format&fit=crop&w=900&q=60" alt="Salad">
-        <h2>Fresh Veggie Salad</h2>
-        <p><strong>Ingredients:</strong> Lettuce, Tomato, Cucumber, Lemon</p>
-        <p><strong>Steps:</strong> Chop veggies → Add dressing → Toss and serve.</p>
-
-        <div class="rating" data-id="3">
-            ⭐ Rate:
-            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
+  <div class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1605475128023-6c9c2c9a89cf" alt="Pizza">
+    <div class="recipe-content">
+      <h3>Cheese Pizza</h3>
+      <p>Classic oven-baked pizza.</p>
+      <div class="stars">★★★★☆</div>
     </div>
+  </div>
 
 </div>
 
-<footer>© 2025 Simple Recipe Blog</footer>
+<div class="form-section">
+  <h2>Submit Your Recipe</h2>
+  <input type="text" id="recipeName" placeholder="Recipe Name">
+  <textarea id="recipeDesc" placeholder="Short Description"></textarea>
+  <input type="text" id="recipeImg" placeholder="Image URL (Unsplash link)">
+  <button onclick="addRecipe()">Add Recipe</button>
+</div>
+
+<footer>
+  <p>© 2026 Recipe Blog | Student Project</p>
+</footer>
 
 <script>
-    // Basic Rating System
-    document.querySelectorAll('.rating').forEach(ratingBox => {
-        const stars = ratingBox.querySelectorAll('span');
+  function searchRecipes() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.getElementsByClassName("recipe-card");
 
-        stars.forEach((star, index) => {
-            star.addEventListener('click', () => {
-                stars.forEach(s => s.classList.remove('active'));
-                for (let i = 0; i <= index; i++) {
-                    stars[i].classList.add('active');
-                }
-            });
-        });
-    });
+    for (let i = 0; i < cards.length; i++) {
+      let title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+      cards[i].style.display = title.includes(input) ? "block" : "none";
+    }
+  }
+
+  function addRecipe() {
+    let name = document.getElementById("recipeName").value;
+    let desc = document.getElementById("recipeDesc").value;
+    let img = document.getElementById("recipeImg").value;
+
+    if (name === "" || desc === "" || img === "") {
+      alert("Please fill all fields");
+      return;
+    }
+
+    let card = `
+      <div class="recipe-card">
+        <img src="${img}">
+        <div class="recipe-content">
+          <h3>${name}</h3>
+          <p>${desc}</p>
+          <div class="stars">★★★☆☆</div>
+        </div>
+      </div>
+    `;
+
+    document.getElementById("recipeList").innerHTML += card;
+
+    document.getElementById("recipeName").value = "";
+    document.getElementById("recipeDesc").value = "";
+    document.getElementById("recipeImg").value = "";
+  }
 </script>
 
 </body>
