@@ -2,58 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Recipe Blog</title>
+  <title>Recipe Blog</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background: #f2f2f2;
     }
 
     header {
-      background: #ff7043;
+      background: #ff6f00;
       color: white;
       padding: 20px;
       text-align: center;
     }
 
-    .search-box {
+    .search {
       text-align: center;
       margin: 20px;
     }
 
-    .search-box input {
+    .search input {
       width: 60%;
       padding: 10px;
       font-size: 16px;
     }
 
-    .container {
+    .recipes {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       padding: 20px;
     }
 
-    .recipe-card {
+    .card {
       background: white;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    .recipe-card img {
+    .card img {
       width: 100%;
       height: 180px;
       object-fit: cover;
     }
 
-    .recipe-content {
+    .card-content {
       padding: 15px;
-    }
-
-    .recipe-content h3 {
-      margin: 0 0 10px;
     }
 
     .stars {
@@ -61,29 +57,25 @@
       font-size: 18px;
     }
 
-    .form-section {
+    .add-recipe {
       background: white;
       margin: 20px;
       padding: 20px;
       border-radius: 8px;
     }
 
-    .form-section h2 {
-      margin-top: 0;
-    }
-
-    .form-section input,
-    .form-section textarea {
+    .add-recipe input,
+    .add-recipe textarea {
       width: 100%;
       padding: 10px;
       margin: 8px 0;
     }
 
-    .form-section button {
-      background: #ff7043;
+    button {
+      background: #ff6f00;
       color: white;
-      border: none;
       padding: 10px 15px;
+      border: none;
       cursor: pointer;
     }
 
@@ -92,104 +84,32 @@
       color: white;
       text-align: center;
       padding: 15px;
-      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>🍽️ My Recipe Blog</h1>
-  <p>Simple & Homemade Recipes</p>
+  <h1>🍽️ Simple Recipe Blog</h1>
+  <p>Basic HTML • CSS • JS Project</p>
 </header>
 
-<div class="search-box">
-  <input type="text" id="search" placeholder="Search recipes..." onkeyup="searchRecipes()">
+<div class="search">
+  <input type="text" id="search" placeholder="Search recipes..." onkeyup="searchRecipe()">
 </div>
 
-<div class="container" id="recipeList">
+<div class="recipes" id="recipeList">
 
-  <div class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1604909053198-8bcbf5f2cdb5" alt="Pasta">
-    <div class="recipe-content">
-      <h3>Italian Pasta</h3>
+  <div class="card">
+    <img src="https://picsum.photos/400/300?random=1">
+    <div class="card-content">
+      <h3>Pasta</h3>
       <p>Creamy homemade pasta.</p>
       <div class="stars">★★★★☆</div>
     </div>
   </div>
 
-  <div class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe" alt="Salad">
-    <div class="recipe-content">
-      <h3>Healthy Salad</h3>
-      <p>Fresh veggies & greens.</p>
-      <div class="stars">★★★★★</div>
-    </div>
-  </div>
-
-  <div class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1605475128023-6c9c2c9a89cf" alt="Pizza">
-    <div class="recipe-content">
-      <h3>Cheese Pizza</h3>
-      <p>Classic oven-baked pizza.</p>
-      <div class="stars">★★★★☆</div>
-    </div>
-  </div>
-
-</div>
-
-<div class="form-section">
-  <h2>Submit Your Recipe</h2>
-  <input type="text" id="recipeName" placeholder="Recipe Name">
-  <textarea id="recipeDesc" placeholder="Short Description"></textarea>
-  <input type="text" id="recipeImg" placeholder="Image URL (Unsplash link)">
-  <button onclick="addRecipe()">Add Recipe</button>
-</div>
-
-<footer>
-  <p>© 2026 Recipe Blog | Student Project</p>
-</footer>
-
-<script>
-  function searchRecipes() {
-    let input = document.getElementById("search").value.toLowerCase();
-    let cards = document.getElementsByClassName("recipe-card");
-
-    for (let i = 0; i < cards.length; i++) {
-      let title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
-      cards[i].style.display = title.includes(input) ? "block" : "none";
-    }
-  }
-
-  function addRecipe() {
-    let name = document.getElementById("recipeName").value;
-    let desc = document.getElementById("recipeDesc").value;
-    let img = document.getElementById("recipeImg").value;
-
-    if (name === "" || desc === "" || img === "") {
-      alert("Please fill all fields");
-      return;
-    }
-
-    let card = `
-      <div class="recipe-card">
-        <img src="${img}">
-        <div class="recipe-content">
-          <h3>${name}</h3>
-          <p>${desc}</p>
-          <div class="stars">★★★☆☆</div>
-        </div>
-      </div>
-    `;
-
-    document.getElementById("recipeList").innerHTML += card;
-
-    document.getElementById("recipeName").value = "";
-    document.getElementById("recipeDesc").value = "";
-    document.getElementById("recipeImg").value = "";
-  }
-</script>
-
-</body>
-</html>
+  <div class="card">
+    <img src="https://picsum.photos/400/300?random=2">
+    <div class="card-co
 
